@@ -60,10 +60,9 @@ class MiComponente extends React.Component{
         return (
 
             //llamo a la funcion handleClick
+            //name es la variable definida anteriormente
+            //state es la variable de la clase
             <h1 id="Title" onClick={this.handleClick}>
-
-              //name es la variable definida anteriormente
-              //state es la variable de la clase
               Hola {name} {this.state.count}
             </h1>
         );
@@ -74,7 +73,7 @@ class MiComponente extends React.Component{
 
   ReactDOM.render(
     //llamo al componente (el cual es una clase que cree anteriormente) y le paso los parametros (props), se usa como si fuera un elemento HTML
-    <MiComponente name="Platzi"/>,
+    <MiComponente name="Mundo"/>,
     document.getElementById('app')
   );
 /*
