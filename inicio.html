@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="utf-8">
+  <title>Document</title>
+</head>
+<body>
+  <main id="app"></main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.js"></script>
+  <script type="text/babel">
+
+  function Hola(props){
+    const name = props.name;
+
+    return (
+        <h1 id="Title">
+          Hola {name}
+        </h1>
+    );
+
+    /*return React.DOM.h1({
+      id:'Title',
+    }, `Hola ${name}`);*/
+  }
+/*
+  const hola = React.createElement(Hola, {
+    name: 'Platzi',
+  });
+*/
+
+//Manera actual de crear componentes, tambien se pueden hacer con React.PureComponent.
+class MiComponente extends React.Component{
+
+  //Debo pasarle todos los props (variables como nombres, ids, estados, etc) que usa jsx para crear los componentes en React
+  constructor(props){
+
+    //debo hacer el super de los props para poder usarlos en la clase
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+
+    //Debo crear una instancia con el bind siempre para usar las funciones que creé y se sobreescriban.
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.setState({
+      count: this.state.count + 1,
+    });
+  }
+
+  render(){
+    //defino el nombre que recibe el componente
+    const name = this.props.name;
+    //retorno lo que contiene el nuevo componente
+        return (
+
+            //llamo a la funcion handleClick
+            <h1 id="Title" onClick={this.handleClick}>
+
+              //name es la variable definida anteriormente
+              //state es la variable de la clase
+              Hola {name} {this.state.count}
+            </h1>
+        );
+  }
+}
+
+
+
+  ReactDOM.render(
+    //llamo al componente (el cual es una clase que cree anteriormente) y le paso los parametros (props), se usa como si fuera un elemento HTML
+    <MiComponente name="Platzi"/>,
+    document.getElementById('app')
+  );
+/*
+  setTimeout(
+    () => {
+      ReactDOM.render(
+        <Hola name="Platzi!" />,
+        document.getElementById('app')
+      );
+    },
+    1000
+  )*/
+  </script>
+</body>
+</html>
